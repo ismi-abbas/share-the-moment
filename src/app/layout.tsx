@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${allFonts} antialiased flex flex-col items-center justify-center`}
+        className={` ${allFonts} antialiased flex flex-col items-center justify-center bg-seasalt`}
       >
         {children}
       </body>

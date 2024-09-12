@@ -2,12 +2,13 @@
 
 import AwsS3, { AwsS3UploadParameters, type AwsBody } from "@uppy/aws-s3";
 import Uppy, { Meta, UppyFile } from "@uppy/core";
-import { Dashboard } from "@uppy/react";
-import { useEffect, useState } from "react";
+import { DashboardModal } from "@uppy/react";
 
 import "@uppy/core/dist/style.min.css";
 import "@uppy/dashboard/dist/style.min.css";
 import "@uppy/webcam/dist/style.min.css";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 
 export async function getUploadParameters(
   file: UppyFile<Meta, AwsBody>
@@ -42,22 +43,50 @@ export async function getUploadParameters(
 }
 
 export default function Uploader() {
-  const [uppy] = useState(() => new Uppy<Meta, AwsBody>());
-
-  useEffect(() => {
-    import("@uppy/webcam").then((Webcam) => {
-      uppy.use(Webcam.default);
-      uppy.use(AwsS3, {
-        id: "AwsS3",
-        // @ts-expect-error - i have no idea
-        getUploadParameters: (file: UppyFile<Meta, AwsBody>) =>
-          getUploadParameters(file),
-      });
-      uppy.on("complete", (result) => {
-        console.log("complete", result);
-      });
+  const uppy = useMemo(() => {
+    const uppy = new Uppy({
+      autoProceed: true,
+      restrictions: {
+        maxNumberOfFiles: 3,
+      },
+    }).use(AwsS3, {
+      id: "AwsS3",
+      // @ts-expect-error - i have no idea
+      getUploadParameters: (file: UppyFile<Meta, AwsBody>) =>
+        getUploadParameters(file),
     });
-  }, [uppy]);
 
-  return <Dashboard uppy={uppy} className="shadow-md max-w-screen-sm" />;
+    return uppy;
+  }, []);
+  uppy.on("complete", (result) => {
+    console.log("complete", result);
+  });
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <div className="flex gap-2">
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          className="bg-onyx text-seasalt px-2 py-1 rounded-md font-rubik text-sm"
+        >
+          Upload
+        </button>
+        <Link
+          href="/photos"
+          className="bg-onyx text-seasalt px-2 py-1 rounded-md font-rubik text-sm"
+        >
+          View Photos
+        </Link>
+      </div>
+      <DashboardModal
+        onRequestClose={() => setIsOpen(false)}
+        open={isOpen}
+        uppy={uppy}
+      />
+    </div>
+  );
 }

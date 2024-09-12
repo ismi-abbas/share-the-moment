@@ -1,29 +1,7 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { NextRequest, NextResponse } from "next/server";
-
-const { R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_KEY_ID, R2_BUCKET_NAME } =
-  process.env;
-
-if (
-  !R2_ACCOUNT_ID ||
-  !R2_ACCESS_KEY_ID ||
-  !R2_SECRET_KEY_ID ||
-  !R2_BUCKET_NAME
-) {
-  throw new Error(
-    "Missing required environment variables for R2 configuration"
-  );
-}
-
-const R2 = new S3Client({
-  region: "auto",
-  endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-  credentials: {
-    accessKeyId: R2_ACCESS_KEY_ID,
-    secretAccessKey: R2_SECRET_KEY_ID,
-  },
-});
+import { R2_Client } from "../s3-client";
 
 export async function POST(req: NextRequest) {
   try {
@@ -38,9 +16,9 @@ export async function POST(req: NextRequest) {
     }
 
     const signedUrl = await getSignedUrl(
-      R2,
+      R2_Client,
       new PutObjectCommand({
-        Bucket: R2_BUCKET_NAME,
+        Bucket: process.env.R2_BUCKET_NAME,
         Key: `share-the-moment/${filename}`,
         ContentType: contentType,
       }),
