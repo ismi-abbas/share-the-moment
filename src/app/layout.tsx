@@ -7,6 +7,18 @@ export const metadata: Metadata = {
   title: "Share the moment",
   description: "Share the moment - Walimatul 'Urus Hani & Abbas",
   icons: "/favicon.png",
+  openGraph: {
+    title: "Share the moment",
+    description: "Share the moment - Walimatul 'Urus Hani & Abbas",
+    images: [
+      {
+        url: "https://share-the-moment.walimah.site/og-image.avif",
+        width: 1200,
+        height: 630,
+        alt: "Share the moment",
+      },
+    ],
+  },
 };
 
 const rubik = Rubik({

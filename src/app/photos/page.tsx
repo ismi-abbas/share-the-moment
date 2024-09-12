@@ -10,9 +10,7 @@ export default async function View() {
 
   return (
     <div className="flex flex-col max-w-screen-md items-center justify-center py-2 gap-6 text-center mt-10">
-      
       <h1 className="font-brittany text-5xl text-onyx">Gallery!</h1>
-      
       <Link
         href="/"
         className="bg-onyx text-seasalt px-2 py-1 rounded-md font-rubik text-sm mt-5"
