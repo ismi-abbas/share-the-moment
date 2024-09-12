@@ -18,6 +18,8 @@ export async function getPhotos() {
       lastModified: item.LastModified,
     }));
 
+    revalidatePath("/photos");
+
     return objects?.sort((a, b) => {
       if (a.lastModified && b.lastModified) {
         return b.lastModified.getTime() - a.lastModified.getTime();
