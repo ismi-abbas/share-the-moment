@@ -44,12 +44,7 @@ const bodony = localFont({
   weight: "400",
 });
 
-const allFonts = [
-  brittany.variable,
-  bodony.variable,
-  ebGaramond.variable,
-  rubik.variable,
-].join(" ");
+const allFonts = [brittany.variable, bodony.variable, ebGaramond.variable, rubik.variable].join(" ");
 
 export default function RootLayout({
   children,
@@ -57,10 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={` ${allFonts} antialiased flex flex-col items-center justify-center bg-seasalt`}
-      >
+    <html lang='en'>
+      <body className={` ${allFonts} antialiased flex flex-col items-center justify-center bg-seasalt`}>
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import QRCodeStyling, { Options } from "qr-code-styler";
+import QRCodeStyling, { type Options } from "qr-code-styler";
 import { useEffect, useRef, useState } from "react";
 
 const options: Options = {
@@ -8,8 +8,7 @@ const options: Options = {
   height: 400,
   type: "svg",
   data: "https://share-the-moment.walimah.site",
-  image:
-    "https://www.walimah.site/_next/image?url=%2Fletter-h-a.png&w=1080&q=75",
+  image: "https://www.walimah.site/_next/image?url=%2Fletter-h-a.png&w=1080&q=75",
   dotsOptions: {
     color: "#343e3d",
     type: "dots",
@@ -46,9 +45,9 @@ export default function QrCode() {
   }, [qrCode, options]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-100">
+    <div className='flex flex-col items-center justify-center min-h-screen py-2 bg-gray-100'>
       <h1>Share the moment</h1>
-      <div ref={qrRef} className="p-5 rounded-xl shadow-lg" />;
+      <div ref={qrRef} className='p-5 rounded-xl shadow-lg' />;
     </div>
   );
 }

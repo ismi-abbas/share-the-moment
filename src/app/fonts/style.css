@@ -4,14 +4,17 @@
   font-family: "BodoniFLF Regular";
   font-style: normal;
   font-weight: normal;
-  src: local("BodoniFLF Regular"), url("BodoniFLF-Roman.woff") format("woff");
+  src:
+    local("BodoniFLF Regular"),
+    url("BodoniFLF-Roman.woff") format("woff");
 }
 
 @font-face {
   font-family: "BodoniFLF Medium Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("BodoniFLF Medium Italic"),
+  src:
+    local("BodoniFLF Medium Italic"),
     url("BodoniFLF-Italic.woff") format("woff");
 }
 
@@ -19,13 +22,16 @@
   font-family: "BodoniFLF Bold";
   font-style: normal;
   font-weight: normal;
-  src: local("BodoniFLF Bold"), url("BodoniFLF-Bold.woff") format("woff");
+  src:
+    local("BodoniFLF Bold"),
+    url("BodoniFLF-Bold.woff") format("woff");
 }
 
 @font-face {
   font-family: "BodoniFLF Bold Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("BodoniFLF Bold Italic"),
+  src:
+    local("BodoniFLF Bold Italic"),
     url("BodoniFLF-BoldItalic.woff") format("woff");
 }
