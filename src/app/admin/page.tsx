@@ -14,7 +14,7 @@ export default async function Admin() {
     "use server";
     const password = formData.get("password");
 
-    if (password === "hani") {
+    if (password === process.env.ADMIN_PASSWORD) {
       cookies().set("admin", "true");
       redirect("/admin");
     }
